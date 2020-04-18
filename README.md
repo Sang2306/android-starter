@@ -1,5 +1,5 @@
 # android-starter
-**I'm a noob to android developent**
+**I'm a noob in android development**
 
 ## Which are the repository used for?
 * Submit assginments
