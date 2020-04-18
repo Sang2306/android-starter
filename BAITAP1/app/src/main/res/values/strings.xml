@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">BAITAP1</string>
+    <string name="man_hinh_1">MÀN HÌNH 1</string>
+    <string name="man_hinh_2">MÀN HÌNH 2</string>
+    <string name="text_view_man_hinh_1">Màn hình 1</string>
+    <string name="tro_ve_man_hinh_chinh">Trở về màn hình chính</string>
+    <string name="text">Hien thi</string>
+</resources>

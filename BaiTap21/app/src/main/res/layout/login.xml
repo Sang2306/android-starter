@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/ml_view"
+        android:layout_marginTop="@dimen/mt_vew"
+        android:layout_marginRight="@dimen/mr_view"
+        android:text="@string/login_name" />
+
+    <EditText
+        android:id="@+id/editTextUsername"
+        android:layout_width="match_parent"
+        android:layout_height="41dp"
+        android:layout_marginLeft="@dimen/ml_view"
+        android:layout_marginRight="@dimen/mr_view"
+        android:autofillHints=""
+        android:background="@drawable/rounded_edittextv"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="@string/editText_username" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/ml_view"
+        android:layout_marginRight="@dimen/mr_view"
+        android:text="@string/password" />
+
+    <EditText
+        android:id="@+id/editTextPassword"
+        android:layout_width="match_parent"
+        android:layout_height="43dp"
+        android:layout_marginLeft="@dimen/ml_view"
+        android:layout_marginRight="@dimen/mr_view"
+        android:autofillHints=""
+        android:background="@drawable/rounded_edittextv"
+        android:ems="10"
+        android:inputType="textPassword" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/ml"
+        android:layout_marginRight="@dimen/mr"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/buttonLogin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="0.5"
+            android:backgroundTint="#FFFFFF"
+            android:text="@string/login"
+            android:textColor="#000000" />
+
+        <Button
+            android:id="@+id/buttonExit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:backgroundTint="#FFFFFF"
+            android:onClick="exit"
+            android:text="@string/exit"
+            android:textColor="#000000" />
+    </LinearLayout>
+</LinearLayout>

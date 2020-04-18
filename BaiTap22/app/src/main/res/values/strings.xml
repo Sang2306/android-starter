@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">BaiTap2.2</string>
+    <string name="username">Tên đăng nhập</string>
+    <string name="button">Đăng nhập</string>
+    <string name="todo">TODO</string>
+    <string name="passwordHint">*******</string>
+    <string name="saveInfor">Lưu thông tin đăng nhập</string>
+</resources>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="ml">35dp</dimen>
+    <dimen name="mr">35dp</dimen>
+    <dimen name="ml_view">20dp</dimen>
+    <dimen name="mr_view">20dp</dimen>
+    <dimen name="mt_vew">20dp</dimen>
+</resources>

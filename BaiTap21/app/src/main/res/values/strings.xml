@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">BaiTap2.1</string>
+    <string name="button">Xong</string>
+    <string name="ten">Tên:</string>
+    <string name="login">Đăng nhập</string>
+    <string name="exit">Thoát</string>
+    <string name="login_name">Tên đăng nhập</string>
+    <string name="password">Mật khẩu</string>
+    <string name="editText_username" />
+</resources>

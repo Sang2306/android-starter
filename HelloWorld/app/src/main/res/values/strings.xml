@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Hello world</string>
+    <string name="btnGo">Go</string>
+    <string name="textViewLifeCycle">Understand the Activity Lifecycle</string>
+    <string name="textViewIntenFilter">
+        Focus on Intent Filter with send email action
+    </string>
+    <string name="btnSendEmail">Send Email</string>
+    <string name="editTextMessage">Message</string>
+</resources>
