@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">My Blog</string>
+    <string name="des">khong des</string>
+    <string name="userName">Tên đăng nhập</string>
+    <string name="password">Mật khẩu</string>
+    <string name="save_pass_word">Lưu mật khẩu</string>
+    <string name="login">Đăng nhập</string>
+    <string name="tim_kiem">Tìm kiếm</string>
+    <string name="contentDes">no</string>
+</resources>
