@@ -5,4 +5,5 @@
     <dimen name="default_margin_large">30dp</dimen>
     <dimen name="searchTextViewMargin">5dp</dimen>
     <dimen name="searchBoxRadius">4dp</dimen>
+    <dimen name="article_cardview_margin">10dp</dimen>
 </resources>
