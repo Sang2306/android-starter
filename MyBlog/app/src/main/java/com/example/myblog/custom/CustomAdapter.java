@@ -53,7 +53,7 @@ public class CustomAdapter extends ArrayAdapter<Item> {
         //Set width, height for articleCardView
         articleCardView.setLayoutParams(new LinearLayout.LayoutParams(this.screenWidth, 120));
         //Set values
-        articleTextView.setText(articleList.get(position).getText());
+        articleTextView.setText(articleList.get(position).getTitle());
         articleImageVIew.setImageResource(articleList.get(position).getImageResource());
         articleTextView.setTag(articleList.get(position).getId());
         modifyBtn.setTag(articleList.get(position).getId());

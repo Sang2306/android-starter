@@ -7,15 +7,23 @@ import android.app.ProgressDialog;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
-import android.view.View;
+import android.util.Log;
 import android.widget.ImageButton;
 import android.widget.ListView;
-import android.widget.ProgressBar;
 
 import com.example.myblog.custom.CustomAdapter;
 import com.example.myblog.custom.Item;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
 import java.util.ArrayList;
+
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -60,7 +68,18 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         protected String doInBackground(String... strings) {
-
+            OkHttpClient client = new OkHttpClient().newBuilder()
+                    .build();
+            Request request = new Request.Builder()
+                    .url("https://letanhsang.pythonanywhere.com/blog/dashboard/list/")
+                    .method("GET", null)
+                    .build();
+            try {
+                Response response = client.newCall(request).execute();
+                return response.body().string();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
             return "null";
         }
 
@@ -69,22 +88,18 @@ public class MainActivity extends AppCompatActivity {
             super.onPostExecute(s);
             progressDialog.dismiss();
             //todo JSON Parsing of data from s
+            try {
+                JSONObject jsonObject = new JSONObject(s);
+                JSONArray articles = jsonObject.getJSONArray("articles");
+                for (int i = 0; i < articles.length(); i++){
+                    JSONObject article = articles.getJSONObject(i);
+                    articleList.add(new Item(article.get("uuid").toString(), article.get("title").toString(), R.drawable.logo));
+                }
+                Log.d("JSON", articles.toString());
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
 
-            //todo load into arraylist
-            articleList.add(new Item(1, "How to use Django REST effectively", R.drawable.logo));
-            articleList.add(new Item(2, "QUICK Bookmark", R.drawable.logo));
-            articleList.add(new Item(3, "Keep yourself up", R.drawable.logo));
-            articleList.add(new Item(4, "Not following perfectionism", R.drawable.logo));
-            articleList.add(new Item(4, "Not following perfectionism", R.drawable.logo));
-            articleList.add(new Item(4, "Not following perfectionism", R.drawable.logo));
-            articleList.add(new Item(4, "Not following perfectionism", R.drawable.logo));
-            articleList.add(new Item(4, "Not following perfectionism", R.drawable.logo));
-            articleList.add(new Item(4, "Not following perfectionism", R.drawable.logo));
-            articleList.add(new Item(4, "Not following perfectionism", R.drawable.logo));
-            articleList.add(new Item(4, "Not following perfectionism", R.drawable.logo));
-            articleList.add(new Item(4, "Not following perfectionism", R.drawable.logo));
-            articleList.add(new Item(4, "Not following perfectionism", R.drawable.logo));
-            articleList.add(new Item(4, "Not following perfectionism", R.drawable.logo));
 
             //Get displayMetrics for width, height
             DisplayMetrics displayMetrics = new DisplayMetrics();
