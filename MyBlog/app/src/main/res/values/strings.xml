@@ -7,4 +7,6 @@
     <string name="login">Đăng nhập</string>
     <string name="tim_kiem">Tìm kiếm</string>
     <string name="contentDes">no</string>
+    <string name="modifyBtn">Sửa</string>
+    <string name="deleteBtn">Xóa</string>
 </resources>
