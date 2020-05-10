@@ -70,5 +70,24 @@
         </ListView>
     </LinearLayout>
 
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/floatingActionButton"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        app:fabCustomSize="70dp"
+        android:layout_gravity="bottom|end"
+        android:background="@drawable/custom_fab"
+        android:layout_marginBottom="28dp"
+        android:backgroundTint="#40AE44"
+        android:clickable="true"
+        android:focusable="true"
+        android:scaleType="centerCrop"
+        app:borderWidth="0dp"
+        android:src="@drawable/plus"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.898"
+        app:layout_constraintStart_toStartOf="parent"/>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

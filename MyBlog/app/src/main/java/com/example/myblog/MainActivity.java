@@ -6,6 +6,7 @@ import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ListView;
@@ -85,7 +86,12 @@ public class MainActivity extends AppCompatActivity {
             articleList.add(new Item(4, "Not following perfectionism", R.drawable.logo));
             articleList.add(new Item(4, "Not following perfectionism", R.drawable.logo));
 
-            CustomAdapter customAdapter = new CustomAdapter(getApplicationContext(), R.layout.article_listview, articleList);
+            //Get displayMetrics for width, height
+            DisplayMetrics displayMetrics = new DisplayMetrics();
+            getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+
+            //Set CustomAdapter for list view
+            CustomAdapter customAdapter = new CustomAdapter(getApplicationContext(), R.layout.article_listview, articleList, displayMetrics.widthPixels);
             articleListView.setAdapter(customAdapter);
         }
     }
