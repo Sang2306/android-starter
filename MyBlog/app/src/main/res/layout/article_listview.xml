@@ -21,10 +21,9 @@
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/articleCardView"
-                android:layout_width="580dp"
+                android:layout_width="280dp"
                 android:layout_height="match_parent"
-                app:cardBackgroundColor="@android:color/white"
-                android:layout_marginEnd="2dp">
+                app:cardBackgroundColor="@android:color/white">
 
                 <ImageView
                     android:id="@+id/articleImageVIew"
@@ -45,7 +44,9 @@
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
+                android:id="@+id/articleCardViewForButton"
                 app:cardBackgroundColor="@android:color/white"
+                android:layout_marginStart="2dp"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent">
 
