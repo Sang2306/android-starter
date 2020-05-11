@@ -1,33 +1,33 @@
 package com.example.myblog.custom;
 
 public class Item {
-    private int id;
-    private String text;
+    private String id;
+    private String title;
     private int imageResource;
 
-    public Item(int id, String text, int imageResource) {
+    public Item(String id, String title, int imageResource) {
         this.id = id;
-        this.text = text;
+        this.title = title;
         this.imageResource = imageResource;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
-    String getText() {
-        return text;
+    public String getTitle() {
+        return title;
     }
 
-    public void setText(String text) {
-        this.text = text;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
-    int getImageResource() {
+    public int getImageResource() {
         return imageResource;
     }
 
