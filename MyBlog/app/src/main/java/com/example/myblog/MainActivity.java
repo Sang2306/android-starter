@@ -4,15 +4,18 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ListView;
 
 import com.example.myblog.custom.CustomAdapter;
 import com.example.myblog.custom.Item;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -31,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
     private ImageButton searchBtn;
     private ProgressDialog progressDialog;
     private ArrayList<Item> articleList = new ArrayList<>();
+    private FloatingActionButton floatingAddActionButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,10 +50,17 @@ public class MainActivity extends AppCompatActivity {
     private void setControl() {
         articleListView = findViewById(R.id.articleListView);
         searchBtn = findViewById(R.id.searchBtn);
+        floatingAddActionButton = findViewById(R.id.floatingAddActionButton);
     }
 
     private void setEvent() {
-
+        floatingAddActionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent addArticleActivity = new Intent(getApplicationContext(), AddArticle.class);
+                startActivity(addArticleActivity);
+            }
+        });
     }
 
     /**
@@ -87,20 +98,18 @@ public class MainActivity extends AppCompatActivity {
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
             progressDialog.dismiss();
-            //todo JSON Parsing of data from s
+            //JSON Parsing of data from s
             try {
                 JSONObject jsonObject = new JSONObject(s);
                 JSONArray articles = jsonObject.getJSONArray("articles");
                 for (int i = 0; i < articles.length(); i++){
                     JSONObject article = articles.getJSONObject(i);
-                    articleList.add(new Item(article.get("uuid").toString(), article.get("title").toString(), R.drawable.logo));
+                    articleList.add(new Item(article.getString("uuid"), article.getString("title"), R.drawable.logo));
                 }
                 Log.d("JSON", articles.toString());
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-
-
             //Get displayMetrics for width, height
             DisplayMetrics displayMetrics = new DisplayMetrics();
             getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);

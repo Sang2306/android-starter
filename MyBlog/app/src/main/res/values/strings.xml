@@ -9,4 +9,12 @@
     <string name="contentDes">no</string>
     <string name="modifyBtn">Sửa</string>
     <string name="deleteBtn">Xóa</string>
+    <string name="picture_input">Ảnh</string>
+    <string name="input_image_url">Nhập url của ảnh</string>
+    <string name="article_title">Tiêu đề của bài viết</string>
+    <string name="article_content">Nội dung</string>
+    <string name="article_title_label">Nhập tiêu đề bài viết ở đây</string>
+    <string name="save">Lưu</string>
+    <string name="deleteAll">Xóa hết</string>
+    <string name="hello_user">Xin chào</string>
 </resources>

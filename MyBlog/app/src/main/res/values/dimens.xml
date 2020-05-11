@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="default_padding_normal">16dp</dimen>
-    <dimen name="default_font_size">18dp</dimen>
+    <dimen name="default_font_size">18sp</dimen>
     <dimen name="default_margin_large">30dp</dimen>
     <dimen name="searchTextViewMargin">5dp</dimen>
     <dimen name="searchBoxRadius">4dp</dimen>

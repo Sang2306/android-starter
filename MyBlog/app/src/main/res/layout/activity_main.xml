@@ -71,7 +71,7 @@
     </LinearLayout>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/floatingActionButton"
+        android:id="@+id/floatingAddActionButton"
         android:layout_width="70dp"
         android:layout_height="70dp"
         app:fabCustomSize="70dp"
