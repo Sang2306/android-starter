@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
 
@@ -31,6 +32,7 @@ import okhttp3.Response;
 public class MainActivity extends AppCompatActivity {
 
     private ListView articleListView;
+    private EditText searchEditText;
     private ImageButton searchBtn;
     private ProgressDialog progressDialog;
     private ArrayList<Item> articleList = new ArrayList<>();
@@ -51,6 +53,7 @@ public class MainActivity extends AppCompatActivity {
         articleListView = findViewById(R.id.articleListView);
         searchBtn = findViewById(R.id.searchBtn);
         floatingAddActionButton = findViewById(R.id.floatingAddActionButton);
+        searchEditText = findViewById(R.id.searchEditText);
     }
 
     private void setEvent() {
@@ -63,6 +66,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+
     /**
      * ArticleFetchAsyncTask Dùng để load dữ liệu bài viết từ api
      */
@@ -72,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
         protected void onPreExecute() {
             super.onPreExecute();
             progressDialog = new ProgressDialog(MainActivity.this);
-            progressDialog.setMessage("Chờ chút xíu...");
+            progressDialog.setMessage("Đang tải dữ liệu...");
             progressDialog.setCancelable(false);
             progressDialog.show();
         }
@@ -82,7 +86,7 @@ public class MainActivity extends AppCompatActivity {
             OkHttpClient client = new OkHttpClient().newBuilder()
                     .build();
             Request request = new Request.Builder()
-                    .url("https://letanhsang.pythonanywhere.com/blog/dashboard/list/")
+                    .url("https://letanhsang.pythonanywhere.com/blog/dashboard/list/?limit=100")
                     .method("GET", null)
                     .build();
             try {
@@ -104,7 +108,14 @@ public class MainActivity extends AppCompatActivity {
                 JSONArray articles = jsonObject.getJSONArray("articles");
                 for (int i = 0; i < articles.length(); i++){
                     JSONObject article = articles.getJSONObject(i);
-                    articleList.add(new Item(article.getString("uuid"), article.getString("title"), R.drawable.logo));
+                    articleList.add(
+                            new Item(
+                                    article.getString("uuid"),
+                                    article.getString("title"),
+                                    article.getString("publish_date"),
+                                    R.drawable.logo
+                            )
+                    );
                 }
                 Log.d("JSON", articles.toString());
             } catch (JSONException e) {

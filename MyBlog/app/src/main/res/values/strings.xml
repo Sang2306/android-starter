@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">My Blog</string>
+    <string name="app_name">SangBox</string>
     <string name="des">khong des</string>
     <string name="userName">Tên đăng nhập</string>
     <string name="password">Mật khẩu</string>

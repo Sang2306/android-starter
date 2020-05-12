@@ -11,7 +11,7 @@
     <item android:state_pressed="true">
         <shape>
             <corners android:radius="4dp" />
-            <gradient android:endColor="#388E3C" android:startColor="#1ACD22" />
+            <gradient android:endColor="#1E88E5" android:startColor="#039BE5" />
         </shape>
     </item>
 </selector>
