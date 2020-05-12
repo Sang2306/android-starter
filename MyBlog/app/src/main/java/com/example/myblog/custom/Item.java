@@ -3,12 +3,14 @@ package com.example.myblog.custom;
 public class Item {
     private String id;
     private String title;
+    private String dateText;
     private int imageResource;
 
-    public Item(String id, String title, int imageResource) {
+    public Item(String id, String title, String dateText, int imageResource) {
         this.id = id;
         this.title = title;
         this.imageResource = imageResource;
+        this.dateText = dateText;
     }
 
     public String getId() {
@@ -20,7 +22,10 @@ public class Item {
     }
 
     public String getTitle() {
-        return title;
+        if(title.length() < 50){
+            return title;
+        }
+        return title.substring(0, 50) + "...";
     }
 
     public void setTitle(String title) {
@@ -33,5 +38,13 @@ public class Item {
 
     public void setImageResource(int imageResource) {
         this.imageResource = imageResource;
+    }
+
+    public String getDateText() {
+        return dateText;
+    }
+
+    public void setDateText(String dateText) {
+        this.dateText = dateText;
     }
 }
