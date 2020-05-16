@@ -17,4 +17,5 @@
     <string name="save">Lưu</string>
     <string name="deleteAll">Xóa hết</string>
     <string name="hello_user">Xin chào</string>
+    <string name="login_failed">Kiểm tra lại thông tin đăng nhập!</string>
 </resources>
