@@ -10,5 +10,6 @@
     <dimen name="card_margin">20dp</dimen>
     <dimen name="login_failed_txtSize">25sp</dimen>
     <dimen name="login_failed_txt_margin">25dp</dimen>
-    <dimen name="ok_login_failed_btn_margin">30dp</dimen>
+    <dimen name="notifybtn_margin">30dp</dimen>
+    <dimen name="article_linear_margin">10dp</dimen>
 </resources>

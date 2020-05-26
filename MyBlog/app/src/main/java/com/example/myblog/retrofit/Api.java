@@ -8,7 +8,6 @@ public class Api {
                 .setEndpoint("https://letanhsang.pythonanywhere.com")
                 .build();
 
-        ApiInterface api = adapter.create(ApiInterface.class);
-        return api;
+        return adapter.create(ApiInterface.class);
     }
 }

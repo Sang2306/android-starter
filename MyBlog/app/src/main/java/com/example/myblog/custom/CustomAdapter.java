@@ -1,8 +1,12 @@
 package com.example.myblog.custom;
 
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,15 +23,29 @@ import androidx.cardview.widget.CardView;
 
 import com.example.myblog.R;
 import com.example.myblog.ViewArticle;
+import com.example.myblog.retrofit.Api;
+import com.example.myblog.retrofit.DeleteArticleResponse;
 
 import java.util.ArrayList;
+import java.util.Objects;
+
+import retrofit.Callback;
+import retrofit.RetrofitError;
+import retrofit.client.Response;
 
 public class CustomAdapter extends ArrayAdapter<Item> {
     private ArrayList<Item> articleList = new ArrayList<>();
     private int screenWidth;
 
-    public CustomAdapter(Context context, int textViewSourceId, ArrayList<Item> objects, int screenWidth) {
+    //Context
+    private Context context;
+
+    //tao dialog de hien thi confirm xoa bai viet
+    private AlertDialog alertDialog;
+
+    public CustomAdapter(Context context, int textViewSourceId, ArrayList<Item> objects, int screenWidth, Context _this) {
         super(context, textViewSourceId, objects);
+        this.context = _this;
         articleList = objects;
         this.screenWidth = screenWidth;
     }
@@ -40,7 +58,7 @@ public class CustomAdapter extends ArrayAdapter<Item> {
     @SuppressLint({"ViewHolder", "InflateParams"})
     @NonNull
     @Override
-    public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+    public View getView(int position, @Nullable final View convertView, @NonNull ViewGroup parent) {
         View v = convertView;
         LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         assert inflater != null;
@@ -88,7 +106,56 @@ public class CustomAdapter extends ArrayAdapter<Item> {
         deleteBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getContext(), "Đã click vào nút xóa và bài viết có id " + v.getTag(), Toast.LENGTH_SHORT).show();
+                // lay uuid
+                final String uuid = v.getTag().toString();
+
+                try {
+                    // hien thi dialog xac nhan xoa
+                    AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                    ViewGroup viewGroup = v.findViewById(R.id.mainActivity);
+                    View dialogView = LayoutInflater.from(context).inflate(R.layout.delete_article_confirm, viewGroup, false);
+                    builder.setView(dialogView);
+
+                    alertDialog = builder.create();
+                    Objects.requireNonNull(alertDialog.getWindow()).setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
+                    // thiet lap dieu khien cho cac nut
+                    Button hideBtn = dialogView.findViewById(R.id.cancelBtn);
+                    Button okBtn = dialogView.findViewById(R.id.okBtn);
+                    alertDialog.show();
+
+                    hideBtn.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            alertDialog.hide();
+                        }
+                    });
+                    //thiet lap su kien cho cac nut
+                    okBtn.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Api.getClient().deletaArticle(uuid, new Callback<DeleteArticleResponse>() {
+                                @Override
+                                public void success(DeleteArticleResponse deleteArticleResponse, Response response) {
+                                    if (deleteArticleResponse.isDeleted()) {
+                                        Toast.makeText(context, "Đã xóa bài viết rồi nha", Toast.LENGTH_LONG).show();
+                                        alertDialog.dismiss();
+                                    }
+                                }
+
+                                @Override
+                                public void failure(RetrofitError error) {
+                                    Toast.makeText(context, "Không thể xóa bài viết", Toast.LENGTH_LONG).show();
+                                    alertDialog.dismiss();
+                                }
+                            });
+
+                        }
+                    });
+
+                } catch (Exception e) {
+                    Log.d("LOI", Objects.requireNonNull(e.getMessage()));
+                }
             }
         });
         return v;

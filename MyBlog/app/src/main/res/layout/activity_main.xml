@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mainActivity"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
@@ -28,14 +29,14 @@
             android:layout_marginBottom="@dimen/searchTextViewMargin"
             android:layout_weight="1"
             android:autofillHints=""
-            android:background="@drawable/custom_search_box"
+            android:background="@drawable/custom_edit_text"
             android:gravity="center"
             android:hint="@string/tim_kiem"
             android:inputType="text"
             tools:layout_editor_absoluteX="0dp"
             tools:layout_editor_absoluteY="20dp" />
 
-        <ImageButton
+        <Button
             android:id="@+id/searchBtn"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
@@ -49,7 +50,7 @@
             android:contentDescription="@string/contentDes"
             android:paddingStart="10dp"
             android:paddingEnd="10dp"
-            android:src="@android:drawable/ic_menu_search"
+            android:text="OK"
             android:textColor="@android:color/white" />
 
     </LinearLayout>
@@ -67,6 +68,8 @@
 
         <ListView
             android:id="@+id/articleListView"
+            android:divider="@null"
+            android:dividerHeight="0dp"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
         </ListView>
@@ -85,11 +88,30 @@
         android:focusable="true"
         android:scaleType="centerCrop"
         app:borderWidth="0dp"
-        android:src="@drawable/plus"
+        android:src="@drawable/ic_post_add_white_24dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.898"
         app:layout_constraintStart_toStartOf="parent"/>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/floatingRefreshActionButton"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_gravity="bottom|end"
+        android:layout_marginBottom="28dp"
+        android:background="@drawable/custom_refresh_fab"
+        android:backgroundTint="#1E88E5"
+        android:clickable="true"
+        android:focusable="true"
+        android:scaleType="centerCrop"
+        android:src="@drawable/ic_refresh_white_24dp"
+        app:borderWidth="0dp"
+        app:fabCustomSize="70dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.117"
+        app:layout_constraintStart_toStartOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

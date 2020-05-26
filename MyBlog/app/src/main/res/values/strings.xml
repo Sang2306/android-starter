@@ -17,5 +17,8 @@
     <string name="save">Lưu</string>
     <string name="deleteAll">Xóa hết</string>
     <string name="hello_user">Xin chào</string>
-    <string name="login_failed">Kiểm tra lại thông tin đăng nhập!</string>
+    <string name="login_failed">Huhu kiểm tra lại thông tin đăng nhập nha!</string>
+    <string name="deleteArticleNotify">Anh có muốn xóa nó không?</string>
+    <string name="huy">Hủy</string>
+    <string name="ok">OK</string>
 </resources>
