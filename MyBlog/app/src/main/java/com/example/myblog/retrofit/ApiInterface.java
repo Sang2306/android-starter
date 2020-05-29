@@ -11,18 +11,18 @@ import retrofit.http.Path;
 public interface ApiInterface {
     @FormUrlEncoded
     @POST("/accounts/check-login/")
-    public void login(
+    void login(
             @Field("username") String username,
             @Field("password") String password,
             Callback<LoginResponse> callback
     );
 
     @GET("/blog/dashboard/list/?limit=100")
-    public void listArticles(Callback<Articles> callback);
+    void listArticles(Callback<Articles> callback);
 
     @FormUrlEncoded
     @POST("/blog/dashboard/update-or-create/article/")
-    public void createPost(
+    void createAnArticle(
             @Field("title") String title,
             @Field("content") String content,
             @Field("html") String html,
@@ -30,9 +30,26 @@ public interface ApiInterface {
             Callback<CreateArticleResponse> callback
     );
 
+    @FormUrlEncoded
+    @POST("/blog/dashboard/update-or-create/article/")
+    void updateAnArticle(
+            @Field("uuid") String uuid,
+            @Field("title") String title,
+            @Field("content") String content,
+            @Field("html") String html,
+            @Field("owner") int owner,
+            Callback<UpdateArticleResponse> callback
+    );
+
     @DELETE("/blog/dashboard/delete/article/{uuid}")
-    public void deletaArticle(
-        @Path("uuid") String uuid,
-        Callback<DeleteArticleResponse> callback
+    void deleteArticle(
+            @Path("uuid") String uuid,
+            Callback<DeleteArticleResponse> callback
+    );
+
+    @GET("/blog/dashboard/article/{uuid}")
+    void getArticle(
+            @Path("uuid") String uuid,
+            Callback<Article> callback
     );
 }

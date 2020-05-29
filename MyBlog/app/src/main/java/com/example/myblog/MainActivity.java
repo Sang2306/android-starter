@@ -60,6 +60,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent addArticleActivity = new Intent(getApplicationContext(), AddArticle.class);
+                addArticleActivity.putExtra("title", "Tiêu đề");
+                addArticleActivity.putExtra("html", "Nội dung");
                 startActivity(addArticleActivity);
             }
         });

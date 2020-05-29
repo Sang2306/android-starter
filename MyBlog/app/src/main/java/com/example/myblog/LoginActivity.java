@@ -22,6 +22,7 @@ import com.example.myblog.retrofit.Api;
 import com.example.myblog.retrofit.LoginResponse;
 
 import java.util.Objects;
+
 import retrofit.Callback;
 import retrofit.RetrofitError;
 
@@ -79,6 +80,10 @@ public class LoginActivity extends AppCompatActivity {
 
                                 Intent mainActivity = new Intent(getApplicationContext(), MainActivity.class);
                                 startActivity(mainActivity);
+
+//                                todo luu mat khau vao trong database
+//                                savedPassword.isChecked();
+
                                 finish();
                             }
 
@@ -105,13 +110,6 @@ public class LoginActivity extends AppCompatActivity {
                             }
                         }
                 );
-            }
-        });
-
-        savedPassword.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-//                todo save username and password to sqlite3
             }
         });
     }

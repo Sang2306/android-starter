@@ -2,10 +2,12 @@ package com.example.myblog.custom;
 
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,9 +23,13 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
 
+import com.example.myblog.AddArticle;
+import com.example.myblog.MainActivity;
 import com.example.myblog.R;
 import com.example.myblog.ViewArticle;
 import com.example.myblog.retrofit.Api;
+import com.example.myblog.retrofit.Article;
+import com.example.myblog.retrofit.Articles;
 import com.example.myblog.retrofit.DeleteArticleResponse;
 
 import java.util.ArrayList;
@@ -87,6 +93,7 @@ public class CustomAdapter extends ArrayAdapter<Item> {
                 articleTextView.performClick();
             }
         });
+
         articleTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -97,12 +104,30 @@ public class CustomAdapter extends ArrayAdapter<Item> {
                 getContext().startActivity(viewArticle);
             }
         });
+
         modifyBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getContext(), "Đã click vào nút sửa và bài viết có id " + v.getTag(), Toast.LENGTH_SHORT).show();
+                final String uuid = v.getTag().toString();
+                Api.getClient().getArticle(uuid, new Callback<Article>() {
+                    @Override
+                    public void success(Article article, Response response) {
+                        Intent editActivity = new Intent(context.getApplicationContext(), AddArticle.class);
+                        editActivity.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        editActivity.putExtra("uuid", uuid);
+                        editActivity.putExtra("title", article.getTitle());
+                        editActivity.putExtra("html", article.getHtml());
+                        context.getApplicationContext().startActivity(editActivity);
+                    }
+
+                    @Override
+                    public void failure(RetrofitError error) {
+
+                    }
+                });
             }
         });
+
         deleteBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -130,11 +155,11 @@ public class CustomAdapter extends ArrayAdapter<Item> {
                             alertDialog.hide();
                         }
                     });
-                    //thiet lap su kien cho cac nut
+                    // thiet lap su kien cho cac nut
                     okBtn.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            Api.getClient().deletaArticle(uuid, new Callback<DeleteArticleResponse>() {
+                            Api.getClient().deleteArticle(uuid, new Callback<DeleteArticleResponse>() {
                                 @Override
                                 public void success(DeleteArticleResponse deleteArticleResponse, Response response) {
                                     if (deleteArticleResponse.isDeleted()) {
