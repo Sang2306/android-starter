@@ -6,6 +6,17 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:background="@color/colorPrimary"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark"
+        app:layout_constraintBottom_toTopOf="@id/tv_title"/>
+
     <TextView
         android:id="@+id/tv_title"
         android:layout_width="match_parent"
@@ -19,7 +30,7 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/toolbar" />
 
     <Spinner
         android:id="@+id/cb_customer"
@@ -50,6 +61,7 @@
         android:overlapAnchor="false"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/lo_time_picker"
         app:layout_constraintTop_toBottomOf="@id/cb_customer" />
 
     <LinearLayout
@@ -91,6 +103,7 @@
        android:hint="@string/nhapsoluong"
        android:text="@string/_1000"
        android:inputType="number"
+       android:textColor="@android:color/black"
        android:layout_width="match_parent"
        android:layout_height="wrap_content"
        android:autofillHints="" />

@@ -11,4 +11,8 @@
     <string name="date_time">Ngày lập</string>
     <string name="amount">Số lượng</string>
     <string name="_1000">1000</string>
+    <string name="item_1">item 1</string>
+    <string name="item_2">item 2</string>
+    <string name="item_3">item 3</string>
+    <string name="user">user</string>
 </resources>

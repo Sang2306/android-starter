@@ -14,6 +14,8 @@
         android:layout_height="75dp"
         android:contentDescription="@string/add"
         android:src="@drawable/lamp"
+        app:layout_constraintBottom_toBottomOf="@+id/one_item"
+        app:layout_constraintEnd_toStartOf="@id/tv_name"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -77,6 +79,9 @@
         android:layout_marginStart="80dp"
         android:visibility="invisible"
         android:layout_marginEnd="@dimen/default_margin_normal"
+        app:layout_constraintLeft_toRightOf="@+id/image"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/one_item"
         app:layout_constraintTop_toBottomOf="@id/linear" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

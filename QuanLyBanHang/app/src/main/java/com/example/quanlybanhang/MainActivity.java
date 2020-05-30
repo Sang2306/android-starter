@@ -1,12 +1,16 @@
 package com.example.quanlybanhang;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.content.DialogInterface;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -108,6 +112,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setControl() {
+        Toolbar toolbar = findViewById(R.id.toolbar);
         sp_name = findViewById(R.id.cb_customer);
         sp_product = findViewById(R.id.cb_product);
         sp_date = findViewById(R.id.date);
@@ -119,6 +124,11 @@ public class MainActivity extends AppCompatActivity {
         btnDelete = findViewById(R.id.btn_delete);
         btnEdit = findViewById(R.id.btn_edit);
         btnExit = findViewById(R.id.btn_exit);
+
+        //thay the toolbar thanh action bar
+        toolbar.setTitle("Xin chào!");
+        toolbar.setTitleTextColor(Color.WHITE);
+        setSupportActionBar(toolbar);
 
         //thiet lap mot so gia tri mac dinh
         btnDelete.setTag("");
@@ -173,15 +183,19 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String[] data = getDataFromViews();
+                if (data[3].length() == 0){
+                    Toast.makeText(getApplicationContext(), "Số lượng không được bỏ trống!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 Customer customer = new Customer(data[0], data[1], data[2], Integer.parseInt(data[3]));
                 list.add(customer);
 
                 //Thêm vào trong cơ sở dữ liệu
                 long id = customerDBAdapter.insertData(customer.getName(), customer.getProduct(), customer.getDate(), customer.getAmount());
                 if (id < 0) {
-                    Toast.makeText(getApplicationContext(), "Thêm dữ liệu vào database bị lỗi!", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "Thêm dữ liệu vào database bị lỗi!", Toast.LENGTH_SHORT).show();
                 } else {
-                    Toast.makeText(getApplicationContext(), "Thêm dữ liệu vào database thành công!", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "Thêm dữ liệu vào database thành công!", Toast.LENGTH_SHORT).show();
                 }
 
                 loadDataToListViewFromDB();
@@ -271,6 +285,10 @@ public class MainActivity extends AppCompatActivity {
                 int id = Integer.parseInt(pos_id[1]);
 
                 String[] data = getDataFromViews();
+                if (data[3].length() == 0){
+                    Toast.makeText(getApplicationContext(), "Số lượng không được bỏ trống!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 customerDBAdapter.updateName(id, data[0], data[1], data[2], Integer.parseInt(data[3]));
 
                 loadDataToListViewFromDB();
@@ -279,6 +297,32 @@ public class MainActivity extends AppCompatActivity {
                 btnEdit.setTag("");
             }
         });
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.item1:
+                Toast.makeText(this, "Đã chọn item 1", Toast.LENGTH_SHORT).show();
+                return true;
+            case R.id.item2:
+                Toast.makeText(this, "Đã chọn item 2", Toast.LENGTH_SHORT).show();
+                return true;
+            case R.id.item3:
+                Toast.makeText(this, "Đã chọn item 3", Toast.LENGTH_SHORT).show();
+                return true;
+            case R.id.user:
+                Toast.makeText(this, "Đã chọn item user", Toast.LENGTH_SHORT).show();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
     private String[] getDataFromViews() {
