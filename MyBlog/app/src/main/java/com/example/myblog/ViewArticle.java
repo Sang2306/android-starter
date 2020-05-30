@@ -32,55 +32,16 @@ public class ViewArticle extends AppCompatActivity {
         setControl();
 
         Intent intent = getIntent();
-        String uuid = intent.getStringExtra("uuid");
+        String slug = intent.getStringExtra("slug");
 
-        ViewArticleAsyncTask viewArticleAsyncTask = new ViewArticleAsyncTask();
-        viewArticleAsyncTask.execute(uuid);
+        articleWebView.setWebViewClient(new WebViewClient());
+        WebSettings webSettings =  articleWebView.getSettings();
+        webSettings.setBuiltInZoomControls(true);
+        webSettings.setSupportZoom(true);
+        articleWebView.loadUrl("https://letanhsang.pythonanywhere.com/blog/dashboard/view/" + slug);
     }
 
     private void setControl(){
         articleWebView = findViewById(R.id.articleWebView);
-    }
-
-    @SuppressLint("StaticFieldLeak")
-    public class ViewArticleAsyncTask extends AsyncTask<String, String, String>{
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-        }
-
-        @Override
-        protected String doInBackground(String... strings) {
-            String uuid = strings[0];
-            OkHttpClient client = new OkHttpClient().newBuilder()
-                    .build();
-            Request request = new Request.Builder()
-                    .url("https://letanhsang.pythonanywhere.com/blog/dashboard/get-content/?format=json&uuid=" + uuid)
-                    .method("GET", null)
-                    .build();
-            try {
-                Response response = client.newCall(request).execute();
-                return response.body().string();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            return null;
-        }
-
-        @Override
-        protected void onPostExecute(String s) {
-            super.onPostExecute(s);
-            try {
-                JSONObject jsonObject = new JSONObject(s);
-                String slug = jsonObject.getString("slug");
-                articleWebView.setWebViewClient(new WebViewClient());
-                WebSettings webSettings =  articleWebView.getSettings();
-                webSettings.setBuiltInZoomControls(true);
-                webSettings.setSupportZoom(true);
-                articleWebView.loadUrl("https://letanhsang.pythonanywhere.com/blog/dashboard/view/" + slug);
-            }catch (JSONException e){
-                e.printStackTrace();
-            }
-        }
     }
 }

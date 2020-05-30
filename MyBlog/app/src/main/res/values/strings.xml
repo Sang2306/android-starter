@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">SangBox</string>
+    <string name="app_name">Xin chào!</string>
     <string name="des">khong des</string>
     <string name="userName">Tên đăng nhập</string>
     <string name="password">Mật khẩu</string>
@@ -17,8 +17,9 @@
     <string name="save">Lưu</string>
     <string name="deleteAll">Xóa hết</string>
     <string name="hello_user">Xin chào</string>
-    <string name="login_failed">Huhu kiểm tra lại thông tin đăng nhập nha!</string>
-    <string name="deleteArticleNotify">Anh có muốn xóa nó không?</string>
+    <string name="login_failed">Thông tin đăng nhập sai rồi!</string>
+    <string name="deleteArticleNotify">Đồng ý xóa nó không??</string>
     <string name="huy">Hủy</string>
     <string name="ok">OK</string>
+    <string name="search_result">Kết quả tìm kiếm</string>
 </resources>

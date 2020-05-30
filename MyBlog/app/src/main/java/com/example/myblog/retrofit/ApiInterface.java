@@ -7,6 +7,7 @@ import retrofit.http.FormUrlEncoded;
 import retrofit.http.GET;
 import retrofit.http.POST;
 import retrofit.http.Path;
+import retrofit.http.Query;
 
 public interface ApiInterface {
     @FormUrlEncoded
@@ -17,7 +18,7 @@ public interface ApiInterface {
             Callback<LoginResponse> callback
     );
 
-    @GET("/blog/dashboard/list/?limit=100")
+    @GET("/blog/dashboard/list/?limit=7")
     void listArticles(Callback<Articles> callback);
 
     @FormUrlEncoded
@@ -51,5 +52,11 @@ public interface ApiInterface {
     void getArticle(
             @Path("uuid") String uuid,
             Callback<Article> callback
+    );
+
+    @GET("/blog/dashboard/search-post/")
+    void searchArticles(
+        @Query(value = "text_search") String textSearch,
+        Callback<Articles> callback
     );
 }

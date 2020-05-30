@@ -50,7 +50,7 @@
             android:contentDescription="@string/contentDes"
             android:paddingStart="10dp"
             android:paddingEnd="10dp"
-            android:text="OK"
+            android:text="@string/ok"
             android:textColor="@android:color/white" />
 
     </LinearLayout>

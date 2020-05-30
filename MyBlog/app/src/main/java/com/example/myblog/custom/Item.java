@@ -3,10 +3,12 @@ package com.example.myblog.custom;
 public class Item {
     private String id;
     private String title;
+    private String slug;
     private String dateText;
     private int imageResource;
 
-    public Item(String id, String title, String dateText, int imageResource) {
+    public Item(String slug, String id, String title, String dateText, int imageResource) {
+        this.slug = slug;
         this.id = id;
         this.title = title;
         this.imageResource = imageResource;
@@ -19,6 +21,14 @@ public class Item {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getSlug() {
+        return slug;
+    }
+
+    public void setSlug(String slug) {
+        this.slug = slug;
     }
 
     public String getTitle() {

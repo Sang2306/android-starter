@@ -6,8 +6,8 @@
     <dimen name="searchTextViewMargin">5dp</dimen>
     <dimen name="searchBoxRadius">4dp</dimen>
     <dimen name="article_cardview_margin">10dp</dimen>
-    <dimen name="card_radius">20dp</dimen>
-    <dimen name="card_margin">20dp</dimen>
+    <dimen name="card_radius">15dp</dimen>
+    <dimen name="card_margin">15dp</dimen>
     <dimen name="login_failed_txtSize">25sp</dimen>
     <dimen name="login_failed_txt_margin">25dp</dimen>
     <dimen name="notifybtn_margin">30dp</dimen>

@@ -24,12 +24,10 @@ import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
 
 import com.example.myblog.AddArticle;
-import com.example.myblog.MainActivity;
 import com.example.myblog.R;
 import com.example.myblog.ViewArticle;
 import com.example.myblog.retrofit.Api;
 import com.example.myblog.retrofit.Article;
-import com.example.myblog.retrofit.Articles;
 import com.example.myblog.retrofit.DeleteArticleResponse;
 
 import java.util.ArrayList;
@@ -38,6 +36,8 @@ import java.util.Objects;
 import retrofit.Callback;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
+
+import static com.example.myblog.MainActivity.floatingRefreshActionButton;
 
 public class CustomAdapter extends ArrayAdapter<Item> {
     private ArrayList<Item> articleList = new ArrayList<>();
@@ -71,7 +71,7 @@ public class CustomAdapter extends ArrayAdapter<Item> {
         v = inflater.inflate(R.layout.article_listview, null);
         //Add controls
         final CardView articleCardView = v.findViewById(R.id.articleCardView);
-        CardView articleCardViewForButton = v.findViewById(R.id.articleCardViewForButton);
+        final CardView articleCardViewForButton = v.findViewById(R.id.articleCardViewForButton);
         final TextView articleTextView = v.findViewById(R.id.articleTextView);
         TextView articleDateTextView = v.findViewById(R.id.articleDateTextView);
         ImageView articleImageVIew = v.findViewById(R.id.articleImageVIew);
@@ -83,7 +83,7 @@ public class CustomAdapter extends ArrayAdapter<Item> {
         articleTextView.setText(articleList.get(position).getTitle());
         articleDateTextView.setText(articleList.get(position).getDateText());
         articleImageVIew.setImageResource(articleList.get(position).getImageResource());
-        articleTextView.setTag(articleList.get(position).getId());
+        articleTextView.setTag(articleList.get(position).getSlug());
         modifyBtn.setTag(articleList.get(position).getId());
         deleteBtn.setTag(articleList.get(position).getId());
         //Add events
@@ -99,8 +99,8 @@ public class CustomAdapter extends ArrayAdapter<Item> {
             public void onClick(View v) {
                 Intent viewArticle = new Intent(getContext(), ViewArticle.class);
                 viewArticle.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                String uuid = v.getTag().toString();
-                viewArticle.putExtra("uuid", uuid);
+                String slug = v.getTag().toString();
+                viewArticle.putExtra("slug", slug);
                 getContext().startActivity(viewArticle);
             }
         });
@@ -165,6 +165,10 @@ public class CustomAdapter extends ArrayAdapter<Item> {
                                     if (deleteArticleResponse.isDeleted()) {
                                         Toast.makeText(context, "Đã xóa bài viết rồi nha", Toast.LENGTH_LONG).show();
                                         alertDialog.dismiss();
+                                        floatingRefreshActionButton.performClick();
+                                        articleCardView.setBackgroundColor(Color.LTGRAY);
+                                        articleCardView.setVisibility(View.INVISIBLE);
+                                        articleCardViewForButton.setVisibility(View.INVISIBLE);
                                     }
                                 }
 
