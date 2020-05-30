@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/default_margin_normal"
+        android:text="@string/quanlybanhang"
+        android:textAlignment="center"
+        android:textAllCaps="true"
+        android:textColor="#43A047"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Spinner
+        android:id="@+id/cb_customer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/default_margin_normal"
+        android:hint="@string/name"
+        android:maxLines="1"
+        android:dropDownSelector="@drawable/ic_arrow"
+        android:spinnerMode="dropdown"
+        android:overlapAnchor="false"
+        android:paddingStart="@dimen/default_margin_normal"
+        android:paddingEnd="@dimen/default_margin_normal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_title" />
+
+
+    <Spinner
+        android:id="@+id/cb_product"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/default_margin_normal"
+        android:hint="@string/name"
+        android:maxLines="1"
+        android:paddingStart="@dimen/default_margin_normal"
+        android:paddingEnd="@dimen/default_margin_normal"
+        android:overlapAnchor="false"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/cb_customer" />
+
+    <LinearLayout
+        android:id="@+id/lo_time_picker"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/default_margin_normal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/cb_product">
+
+        <Spinner
+            android:id="@+id/date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:spinnerMode="dialog"
+            android:layout_weight="1" />
+
+        <Spinner
+            android:id="@+id/month"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:spinnerMode="dialog"
+            android:layout_weight="1" />
+
+        <Spinner
+            android:id="@+id/year"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:spinnerMode="dialog"
+            android:layout_weight="1" />
+
+    </LinearLayout>
+
+   <EditText
+       android:id="@+id/edit_amout"
+       app:layout_constraintTop_toBottomOf="@id/lo_time_picker"
+       android:layout_margin="@dimen/default_margin_normal"
+       android:hint="@string/nhapsoluong"
+       android:text="@string/_1000"
+       android:inputType="number"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:autofillHints="" />
+
+    <LinearLayout
+        android:id="@+id/lo_control"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@id/edit_amout">
+
+        <Button
+            android:id="@+id/btn_add"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textColor="@android:color/white"
+            android:textStyle="bold"
+            android:paddingStart="12dp"
+            android:paddingEnd="10dp"
+            android:drawableStart="@drawable/ic_add_white_18dp"
+            android:background="@drawable/custom_button"
+            android:layout_margin="@dimen/default_margin_small"
+            android:text="@string/add" />
+
+        <Button
+            android:id="@+id/btn_delete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/default_margin_small"
+            android:layout_weight="1"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"
+            android:textColor="@android:color/white"
+            android:textStyle="bold"
+            android:drawableEnd="@drawable/ic_delete_sweep_white_18dp"
+            android:background="@drawable/custom_button"
+            android:text="@string/delete" />
+
+        <Button
+            android:id="@+id/btn_edit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_margin="@dimen/default_margin_small"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"
+            android:textColor="@android:color/white"
+            android:textStyle="bold"
+            android:drawableEnd="@drawable/ic_edit_white_18dp"
+            android:background="@drawable/custom_button"
+            android:text="@string/edit" />
+
+        <Button
+            android:id="@+id/btn_exit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_margin="@dimen/default_margin_small"
+            android:paddingStart="2dp"
+            android:paddingEnd="10dp"
+            android:drawableEnd="@drawable/ic_exit_to_app_white_18dp"
+            android:textColor="@android:color/white"
+            android:textStyle="bold"
+            android:background="@drawable/custom_button_exit"
+            android:text="@string/exit" />
+
+    </LinearLayout>
+
+    <ListView
+        android:id="@+id/lv"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/lo_control" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

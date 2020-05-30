@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Quan Ly Ban Hang</string>
+    <string name="quanlybanhang">Quản lý bán hàng</string>
+    <string name="name">Tên</string>
+    <string name="nhapsoluong">Số lượng</string>
+    <string name="add">Thêm</string>
+    <string name="exit">Thoát</string>
+    <string name="delete">Xóa</string>
+    <string name="edit">Sửa</string>
+    <string name="product">Hàng hóa</string>
+    <string name="date_time">Ngày lập</string>
+    <string name="amount">Số lượng</string>
+    <string name="_1000">1000</string>
+</resources>

@@ -26,33 +26,43 @@ public class CustomerDBAdapter {
         contentValues.put("product", product);
         contentValues.put("date", date);
         contentValues.put("amount", amount);
-        long id = db.insert(CustomerDBHelper.TABLE_NAME, null, contentValues);
-        return id;
+        return db.insert(CustomerDBHelper.TABLE_NAME, null, contentValues);
     }
 
-    public int updateName(String oldName, String newName) {
+    public void updateName(Integer id, String name, String product, String date, int amount) {
         SQLiteDatabase db = customerDBHelper.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
-        contentValues.put("name", newName);
-        String[] whereArgs = {oldName};
-        int count = db.update(CustomerDBHelper.TABLE_NAME, contentValues, "name" + " = ?", whereArgs);
-        return count;
+        contentValues.put("name", name);
+        contentValues.put("product", product);
+        contentValues.put("date", date);
+        contentValues.put("amount", amount);
+        String[] whereArgs = {id.toString()};
+        db.update(CustomerDBHelper.TABLE_NAME, contentValues, "id = ?", whereArgs);
+    }
+
+    public void delete(Integer id) {
+        SQLiteDatabase db = customerDBHelper.getReadableDatabase();
+        String[] whereArgs = {id.toString()};
+        db.delete(CustomerDBHelper.TABLE_NAME, "id = ?", whereArgs);
     }
 
 
     public ArrayList<Customer> getData() {
         SQLiteDatabase db = customerDBHelper.getWritableDatabase();
         //Danh sách các cột muốn lấy
-        String[] columns = {"name", "product", "date", "amount"};
-        Cursor cursor = db.query(CustomerDBHelper.TABLE_NAME, columns, null, null, null, null, null);
+        String[] columns = {"id", "name", "product", "date", "amount"};
         ArrayList<Customer> customers = new ArrayList<>();
-        while (cursor.moveToNext()){
-            customers.add(new Customer(
-                    cursor.getString(cursor.getColumnIndex("name")),
-                    cursor.getString(cursor.getColumnIndex("product")),
-                    cursor.getString(cursor.getColumnIndex("date")),
-                    cursor.getInt(cursor.getColumnIndex("amount"))
-            ));
+        try (Cursor cursor = db.query(CustomerDBHelper.TABLE_NAME, columns, null, null, null, null, null)) {
+            while (cursor.moveToNext()) {
+                Customer customer = new Customer(
+                        cursor.getInt(cursor.getColumnIndex("id")),
+                        cursor.getString(cursor.getColumnIndex("name")),
+                        cursor.getString(cursor.getColumnIndex("product")),
+                        cursor.getString(cursor.getColumnIndex("date")),
+                        cursor.getInt(cursor.getColumnIndex("amount"))
+                );
+                customers.add(customer);
+            }
         }
         return customers;
     }
@@ -70,11 +80,10 @@ public class CustomerDBAdapter {
                 "date varchar(255)," +
                 "amount int" +
                 ")";
-        private final String DROP_TABLE = "drop table if exists " + TABLE_NAME;
 
         private Context context;
 
-        public CustomerDBHelper(Context context) {
+        CustomerDBHelper(Context context) {
             super(context, DATABASE_NAME, null, DATABASE_VERSION);
             this.context = context;
         }
@@ -91,6 +100,7 @@ public class CustomerDBAdapter {
         @Override
         public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
             try {
+                String DROP_TABLE = "drop table if exists " + TABLE_NAME;
                 db.execSQL(DROP_TABLE);
                 onCreate(db);
             } catch (SQLException e) {
