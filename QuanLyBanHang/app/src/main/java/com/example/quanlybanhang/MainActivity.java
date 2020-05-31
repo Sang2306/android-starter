@@ -117,7 +117,7 @@ public class MainActivity extends AppCompatActivity {
         sp_product = findViewById(R.id.cb_product);
         sp_date = findViewById(R.id.date);
         sp_month = findViewById(R.id.month);
-        edit_amount = findViewById(R.id.edit_amout);
+        edit_amount = findViewById(R.id.edit_amount);
         sp_year = findViewById(R.id.year);
         lv = findViewById(R.id.lv);
         btnAdd = findViewById(R.id.btn_add);

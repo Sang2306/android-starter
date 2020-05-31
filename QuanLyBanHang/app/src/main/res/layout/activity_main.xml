@@ -97,7 +97,7 @@
     </LinearLayout>
 
    <EditText
-       android:id="@+id/edit_amout"
+       android:id="@+id/edit_amount"
        app:layout_constraintTop_toBottomOf="@id/lo_time_picker"
        android:layout_margin="@dimen/default_margin_normal"
        android:hint="@string/nhapsoluong"
@@ -112,8 +112,10 @@
         android:id="@+id/lo_control"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
         android:orientation="horizontal"
-        app:layout_constraintTop_toBottomOf="@id/edit_amout">
+        app:layout_constraintTop_toBottomOf="@id/edit_amount">
 
         <Button
             android:id="@+id/btn_add"
@@ -122,12 +124,13 @@
             android:layout_weight="1"
             android:textColor="@android:color/white"
             android:textStyle="bold"
-            android:paddingStart="12dp"
-            android:paddingEnd="10dp"
+            android:paddingStart="2dp"
+            android:paddingEnd="2dp"
             android:drawableStart="@drawable/ic_add_white_18dp"
             android:background="@drawable/custom_button"
             android:layout_margin="@dimen/default_margin_small"
-            android:text="@string/add" />
+            android:text="@string/add"
+            tools:ignore="ButtonStyle" />
 
         <Button
             android:id="@+id/btn_delete"
@@ -135,13 +138,14 @@
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/default_margin_small"
             android:layout_weight="1"
-            android:paddingStart="10dp"
-            android:paddingEnd="10dp"
+            android:paddingStart="2dp"
+            android:paddingEnd="2dp"
             android:textColor="@android:color/white"
             android:textStyle="bold"
             android:drawableEnd="@drawable/ic_delete_sweep_white_18dp"
             android:background="@drawable/custom_button"
-            android:text="@string/delete" />
+            android:text="@string/delete"
+            tools:ignore="ButtonStyle" />
 
         <Button
             android:id="@+id/btn_edit"
@@ -149,13 +153,14 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:layout_margin="@dimen/default_margin_small"
-            android:paddingStart="10dp"
-            android:paddingEnd="10dp"
+            android:paddingStart="2dp"
+            android:paddingEnd="2dp"
             android:textColor="@android:color/white"
             android:textStyle="bold"
             android:drawableEnd="@drawable/ic_edit_white_18dp"
             android:background="@drawable/custom_button"
-            android:text="@string/edit" />
+            android:text="@string/edit"
+            tools:ignore="ButtonStyle" />
 
         <Button
             android:id="@+id/btn_exit"
@@ -164,12 +169,13 @@
             android:layout_weight="1"
             android:layout_margin="@dimen/default_margin_small"
             android:paddingStart="2dp"
-            android:paddingEnd="10dp"
+            android:paddingEnd="2dp"
             android:drawableEnd="@drawable/ic_exit_to_app_white_18dp"
             android:textColor="@android:color/white"
             android:textStyle="bold"
             android:background="@drawable/custom_button_exit"
-            android:text="@string/exit" />
+            android:text="@string/exit"
+            tools:ignore="ButtonStyle" />
 
     </LinearLayout>
 
