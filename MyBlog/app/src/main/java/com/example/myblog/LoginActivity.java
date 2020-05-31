@@ -18,9 +18,12 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 
+import com.example.myblog.database.DBAdapter;
+import com.example.myblog.database.User;
 import com.example.myblog.retrofit.Api;
 import com.example.myblog.retrofit.LoginResponse;
 
+import java.util.ArrayList;
 import java.util.Objects;
 
 import retrofit.Callback;
@@ -39,12 +42,17 @@ public class LoginActivity extends AppCompatActivity {
     private CheckBox savedPassword;
     private Button loginBtn;
 
+    private DBAdapter dbAdapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         setControl();
         setEvent();
+
+        dbAdapter = new DBAdapter(this);
+        loadLoginInfoFromDB();
     }
 
     private void setControl() {
@@ -58,8 +66,8 @@ public class LoginActivity extends AppCompatActivity {
         loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String username = usernameEditText.getText().toString().trim();
-                String password = passwordEditText.getText().toString().trim();
+                final String username = usernameEditText.getText().toString().trim();
+                final String password = passwordEditText.getText().toString().trim();
 
                 progressDialog = new ProgressDialog(LoginActivity.this);
                 progressDialog.setTitle("Đang đăng nhập");
@@ -81,8 +89,9 @@ public class LoginActivity extends AppCompatActivity {
                                 Intent mainActivity = new Intent(getApplicationContext(), MainActivity.class);
                                 startActivity(mainActivity);
 
-//                                todo luu mat khau vao trong database
-//                                savedPassword.isChecked();
+                                if (savedPassword.isChecked()) {
+                                    dbAdapter.insertData(username, password);
+                                }
 
                                 finish();
                             }
@@ -112,5 +121,15 @@ public class LoginActivity extends AppCompatActivity {
                 );
             }
         });
+    }
+
+    private void loadLoginInfoFromDB() {
+        ArrayList<User> users = dbAdapter.getData();
+        try {
+            //thông tin lần đăng nhập gần nhất
+            usernameEditText.setText(users.get(users.size()-1).getUsername());
+            passwordEditText.setText(users.get(users.size()-1).getPassword());
+        } catch (Exception ignored) {
+        }
     }
 }

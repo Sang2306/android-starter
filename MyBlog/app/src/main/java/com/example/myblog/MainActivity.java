@@ -85,7 +85,7 @@ public class MainActivity extends AppCompatActivity {
             @SuppressLint("SetTextI18n")
             @Override
             public void onClick(View v) {
-                String textSearch = searchEditText.getText().toString();
+                final String textSearch = searchEditText.getText().toString();
                 //Tao dialog hien thi ket qua tim kiem
                 AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
                 ViewGroup viewGroup = findViewById(R.id.mainActivity);
@@ -109,7 +109,14 @@ public class MainActivity extends AppCompatActivity {
                         for (Article marticle : marticles) {
                             resultList.add(new Item(marticle.getSlug(), marticle.getUuid(), marticle.getTitle(), marticle.getPublish_date(), R.drawable.logo));
                         }
-                        search_result.setText("Kết quả tìm kiếm: " + resultList.size());
+
+                        if (textSearch.length() == 0){
+                            search_result.setText("Kết quả tìm kiếm 'Tất cả': " + resultList.size());
+                        }else{
+                            search_result.setText("Kết quả tìm cho '" + textSearch + "': " + resultList.size());
+                        }
+
+
                         //width, height
                         DisplayMetrics displayMetrics = new DisplayMetrics();
                         getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
